@@ -1,13 +1,22 @@
 import { generateId } from "../utils/GenerateId.js"
 
-export class Jumble {
+export class Notes {
     constructor(data) {
         this.id = generateId()
-        this.name = data.name
-        this.body = data.body
-        // to best keep track of the fastest times you might want these properties too! They would start null cause no one has completed these yet.
-        this.fastestTime = Infinity
-        this.startTime = null
-        this.endTime = null
+        this.title = data.title
+        this.color = data.color
+        this.body = data.body || ''
+        this.createdAt = data.createdAt == undefined ? new Date() : new Date(data.createdAt)
+        this.updatedAt = data.updatedAt == undefined ? new Date() : new Date(data.updatedAt)
+    }
+
+    get ListTemplate() {
+        return `<div onclick="app.NotesController.setActiveNote('${this.id}')" class="col-12 selectable" role="button">
+        <div class="d-flex gap-4">
+          <p>${this.title}</p>
+          <p>${this.createdAt}</p>
+        </div>
+      </div>
+      `
     }
 }
