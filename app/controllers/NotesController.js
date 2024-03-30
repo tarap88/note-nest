@@ -8,6 +8,7 @@ export class NotesController {
     constructor() {
         console.log('Notes has loaded')
         this.drawNotesList()
+        AppState.on('activeNotes', this.drawActiveNotes)
 
     }
 
@@ -20,9 +21,15 @@ export class NotesController {
         setHTML('notes-list', notesListContent)
     }
 
+    drawActiveNotes() {
+        console.log('drawing Active');
+        const activeNotes = AppState.activeNotes
+        setHTML('active-notes', activeNotes.body)
+    }
+
 
     setActiveNote(notesId) {
         console.log('setting active', notesId);
+        notesService.setActiveNote(notesId)
     }
-
 }
