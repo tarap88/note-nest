@@ -18,3 +18,7 @@ body {
     background-color: #374130;
     color: #a9b388;
 }
+
+.text-area-box {
+    min-height: 50dvh;
+}

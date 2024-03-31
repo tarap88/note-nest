@@ -1,4 +1,6 @@
 import { generateId } from "../utils/GenerateId.js"
+import { AppState } from "../AppState.js"
+import { NotesController } from "../controllers/NotesController.js"
 
 export class Notes {
     constructor(data) {
@@ -10,9 +12,11 @@ export class Notes {
         this.updatedAt = data.updatedAt == undefined ? new Date() : new Date(data.updatedAt)
     }
 
+    notecount = 0
+
     get ListTemplate() {
         return `<li onclick="app.NotesController.setActiveNotes('${this.id}')">
-        <span>${this.title}</span><span style="color: ${this.color}"> <i class="mdi mdi-circle-double"></i></span>
+        <span>${this.title}</span><span> <i class="mdi mdi-circle-double" style="color: ${this.color}"></i></span>
     </li>`
     }
 
@@ -22,8 +26,8 @@ export class Notes {
         <p class="my-4"><u>Created at:</u> ${this.CreatedDate}</p>
 				<p class="my-4"><u>Updated at:</u> ${this.LastUpdated}</p>
                 <div>
-                <label for="reportBody">Report Body</label>
-                <textarea onblur="app.NotesController.updateReport()" name="body" id="reportBody">${this.body}</textarea>
+                <label for="body"></label>
+                <textarea class="text-area-box w-100" onblur="app.NotesController.updateReport()" name="body" id="body">${this.body}</textarea>
                 </div>
                 <div class="text-end">
                   <button onclick="app.NotesController.destroyReport()" type="button">
@@ -34,6 +38,10 @@ export class Notes {
         `
     }
 
+    static get noteCount() {
+        this.notecount = AppState.nestingNotes.length
+        return `${this.notecount}`
+    }
 
     get CreatedDate() {
         return this.createdAt.toLocaleDateString() // 3/28/2024

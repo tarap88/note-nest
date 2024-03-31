@@ -3,6 +3,7 @@ import { notesService } from "../services/NotesService.js";
 import { getFormData } from "../utils/FormHandler.js";
 import { setHTML } from "../utils/Writer.js";
 import { Pop } from "../utils/Pop.js";
+import { Notes } from "../models/Notes.js";
 
 
 export class NotesController {
@@ -29,15 +30,15 @@ export class NotesController {
         const report = AppState.activeNotes
 
         if (report == null) {
-            setHTML('activeReport', '')
+            setHTML('activeNote', '')
         }
         else {
-            setHTML('activeReport', AppState.activeNotes.ActiveDetailsTemplate)
+            setHTML('activeNote', AppState.activeNotes.ActiveNotesTemplate)
         }
 
     }
 
-    createNote() {
+    createNotes() {
 
         event.preventDefault()
         console.log('Creating note report');
@@ -54,8 +55,42 @@ export class NotesController {
     }
 
 
-    setActiveNote(notesId) {
+    setActiveNotes(notesId) {
         console.log('setting active', notesId);
         notesService.setActiveNote(notesId)
+    }
+
+    updateNotes() {
+        const textAreaElem = event.target
+        console.log('blurred text area', textAreaElem);
+
+        // @ts-ignore
+        const textContentFromTextArea = textAreaElem.value
+        console.log('Text content', textContentFromTextArea);
+
+        notesService.updateNotes(textContentFromTextArea)
+    }
+
+
+    drawNoteCount() {
+
+    }
+
+
+
+    destroyNotes() {
+        const wantsToDestroy = window.confirm("Are you sure you want to delete this note?")
+
+        console.log('do they want to destroy the report', wantsToDestroy);
+
+        if (wantsToDestroy == false) {
+            return
+        }
+
+        console.log('destroying this report!!!!!');
+
+        notesService.destroyReport()
+
+
     }
 }
