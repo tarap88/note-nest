@@ -4,17 +4,16 @@ import { Notes } from './models/Notes.js'
 
 class ObservableAppState extends EventEmitter {
 
-
-
+  /**@type {import('./models/Notes.js').Notes[]} */
   nestingNotes = [
-    new Notes({
-      title: 'Note 1',
-      color: '#FEFAE0'
-    }),
-    new Notes({
-      title: 'Note 2',
-      color: '#F9EBC7'
-    })
+    // new Notes({
+    // title: 'Note 1',
+    // color: '#FEFAE0'
+    // }),
+    // new Notes({
+    // title: 'Note 2',
+    // color: '#F9EBC7'
+    // })
   ]
 
 
@@ -22,3 +21,10 @@ class ObservableAppState extends EventEmitter {
 }
 
 export const AppState = createObservableProxy(new ObservableAppState())
+
+
+
+
+
+
+

@@ -23,10 +23,10 @@ export class Notes {
 				<p class="my-4"><u>Updated at:</u> ${this.LastUpdated}</p>
                 <div>
                 <label for="reportBody">Report Body</label>
-                <textarea onblur="app.FieldReportsController.updateReport()" name="body" id="reportBody">${this.body}</textarea>
+                <textarea onblur="app.NotesController.updateReport()" name="body" id="reportBody">${this.body}</textarea>
                 </div>
                 <div class="text-end">
-                  <button onclick="app.FieldReportsController.destroyReport()" type="button">
+                  <button onclick="app.NotesController.destroyReport()" type="button">
                     Delete ${this.title} Report
                   </button>
                 </div>

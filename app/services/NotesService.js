@@ -4,15 +4,35 @@ import { loadState, saveState } from "../utils/Store.js";
 
 class NotesService {
 
+    createNote(notesFormData) {
+        const newNote = new Notes(notesFormData)
+        console.log('Fancy new report', newNote);
+        AppState.nestingNotes.push(newNote)
+        console.log('Field reports in appstate', AppState.nestingNotes);
+        this.saveNotes()
+    }
 
     setActiveNote(notesId) {
-        console.log('set Active Service', notesId);
-        const selectedNotes = AppState.nestingNotes.find(notes => notes.id == notesId)
-        // console.log('✨', selectedNotes);
-        // console.log('appstate active', AppState.activeNotes);
+        const foundNotes = AppState.nestingNotes.find(notes => notes.id == notesId)
+        console.log('found a report', foundNotes);
+
+        foundNotes.updatedAt = new Date()
+
+        this.saveNotes()
+
+        AppState.activeNotes = foundNotes
     }
 
 
+
+    saveNotes() {
+        saveState('nestingNotes', AppState.nestingNotes)
+    }
+
+    loadNotes() {
+        const nestingNotesFromLocalStorage = loadState('nestingNotes', [Notes])
+        AppState.nestingNotes = nestingNotesFromLocalStorage
+    }
 
 
 }

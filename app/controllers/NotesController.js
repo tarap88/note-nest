@@ -2,6 +2,7 @@ import { AppState } from "../AppState.js";
 import { notesService } from "../services/NotesService.js";
 import { getFormData } from "../utils/FormHandler.js";
 import { setHTML } from "../utils/Writer.js";
+import { Pop } from "../utils/Pop.js";
 
 
 export class NotesController {
@@ -12,7 +13,7 @@ export class NotesController {
         AppState.on('nestingNotes', this.drawNotesList)
         AppState.on('activeNotes', this.drawActiveNotes)
 
-        // fieldReportsService.loadFieldReports() --what is  this
+        notesService.loadNotes()
     }
 
 
@@ -36,8 +37,23 @@ export class NotesController {
 
     }
 
+    createNote() {
+        try {
+            event.preventDefault()
+            console.log('Creating note report');
+            const form = event.target
+            const notesFormData = getFormData(form)
+            console.log('here is your data', notesFormData);
+            notesService.createNote(notesFormData)
 
+            // @ts-ignore
+            form.reset()
+        } catch (error) {
+            console.error('[Creating Note]', error)
+            window.alert(error.message)
+        }
 
+    }
 
 
     setActiveNote(notesId) {
