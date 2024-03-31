@@ -2,9 +2,35 @@
     <div class="row m-2">
         <div class="custom-container">
 
-
             <section id="activeNote" class="row">
+                <div>
+                    <form onsubmit="app.NotesController.createNotes()">
 
+                        <div class="form-container row d-flex justify-content-between p-2">
+                            <input type="text" class="col-12 rounded py-1" name="title" placeholder="Note Name:"
+                                required minlength="3" maxlength="15">
+
+
+                            <label for="color" class="fw-bold fs-5 p-3">Give Your Note A Color</label>
+
+                            <select class="form-select col-6 mb-3" name="color" id="color"
+                                aria-label="default select example">
+                                <option selected>Color Theme</option>
+                                <option value="#">Blue</option>
+                                <option value="#">Red</option>
+                                <option value="#">Violet</option>
+                                <option value="#">Green</option>
+                                <option value="#">Orange</option>
+                                <option value="#">Cyan</option>
+                                <option value="#">Yellow</option>
+                            </select>
+
+
+                            <button type="submit" class="btn btn-dark col-2 p-1 m-2">Create</button>
+
+                        </div>
+                    </form>
+                </div>
             </section>
 
             <section id="notes-list" class="row">

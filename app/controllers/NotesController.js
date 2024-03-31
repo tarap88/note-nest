@@ -8,8 +8,11 @@ export class NotesController {
     constructor() {
         console.log('Notes has loaded')
         this.drawNotesList()
+
+        AppState.on('nestingNotes', this.drawNotesList)
         AppState.on('activeNotes', this.drawActiveNotes)
 
+        // fieldReportsService.loadFieldReports() --what is  this
     }
 
 
@@ -22,10 +25,19 @@ export class NotesController {
     }
 
     drawActiveNotes() {
-        console.log('drawing Active');
-        const activeNotes = AppState.activeNotes
-        setHTML('active-notes', activeNotes.body)
+        const report = AppState.activeNotes
+
+        if (report == null) {
+            setHTML('activeReport', '')
+        }
+        else {
+            setHTML('activeReport', AppState.activeNotes.ActiveDetailsTemplate)
+        }
+
     }
+
+
+
 
 
     setActiveNote(notesId) {

@@ -11,12 +11,39 @@ export class Notes {
     }
 
     get ListTemplate() {
-        return `<div onclick="app.NotesController.setActiveNote('${this.id}')" class="col-12 selectable" role="button">
-        <div class="d-flex gap-4">
-          <p>${this.title}</p>
-          <p>${this.createdAt}</p>
-        </div>
-      </div>
-      `
+        return `<li onclick="app.NotesController.setActiveNotes('${this.id}')">
+        <span>${this.title}</span><span style="color: ${this.color}"> <i class="mdi mdi-circle-double"></i></span>
+    </li>`
+    }
+
+    get ActiveNotesTemplate() {
+        return `<div class="col-md-4 col-12 text-light"> 
+        <h1 class="mt-3">${this.title}</h1>
+        <p class="my-4"><u>Created at:</u> ${this.CreatedDate}</p>
+				<p class="my-4"><u>Updated at:</u> ${this.LastUpdated}</p>
+                <div>
+                <label for="reportBody">Report Body</label>
+                <textarea onblur="app.FieldReportsController.updateReport()" name="body" id="reportBody">${this.body}</textarea>
+                </div>
+                <div class="text-end">
+                  <button onclick="app.FieldReportsController.destroyReport()" type="button">
+                    Delete ${this.title} Report
+                  </button>
+                </div>
+         </div>
+        `
+    }
+
+
+    get CreatedDate() {
+        return this.createdAt.toLocaleDateString() // 3/28/2024
+    }
+
+    get CreatedTime() {
+        return this.createdAt.toLocaleTimeString() // 12:28:11 PM
+    }
+
+    get LastUpdated() {
+        return this.updatedAt.toLocaleString() // 3/28/2024, 2:48:19 PM
     }
 }
