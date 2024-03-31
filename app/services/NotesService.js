@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js";
 import { Notes } from "../models/Notes.js"
 import { loadState, saveState } from "../utils/Store.js";
+import { NotesController } from "../controllers/NotesController.js";
 
 class NotesService {
 

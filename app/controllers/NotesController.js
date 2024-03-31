@@ -38,20 +38,18 @@ export class NotesController {
     }
 
     createNote() {
-        try {
-            event.preventDefault()
-            console.log('Creating note report');
-            const form = event.target
-            const notesFormData = getFormData(form)
-            console.log('here is your data', notesFormData);
-            notesService.createNote(notesFormData)
 
-            // @ts-ignore
-            form.reset()
-        } catch (error) {
-            console.error('[Creating Note]', error)
-            window.alert(error.message)
-        }
+        event.preventDefault()
+        console.log('Creating note report');
+        debugger
+        const form = event.target
+        const notesFormData = getFormData(form)
+        console.log('here is your data', notesFormData);
+        notesService.createNote(notesFormData)
+
+        // @ts-ignore
+        form.reset()
+
 
     }
 
