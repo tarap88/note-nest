@@ -16,7 +16,7 @@ class ObservableAppState extends EventEmitter {
     // })
   ]
 
-
+  noteCount = 0
   activeNotes = null
 }
 

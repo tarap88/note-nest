@@ -37,9 +37,6 @@ class NotesService {
         this.saveNotes()
     }
 
-    noteCount() {
-
-    }
 
     destroyNotes() {
         const notesId = AppState.activeNotes.id
@@ -61,8 +58,6 @@ class NotesService {
     }
 
 
-
-
     saveNotes() {
         saveState('nestingNotes', AppState.nestingNotes)
 
@@ -74,6 +69,9 @@ class NotesService {
     }
 
 
+    countNotes() {
+        AppState.noteCount = AppState.nestingNotes.length
+    }
 }
 
 export const notesService = new NotesService()

@@ -10,6 +10,7 @@ export class NotesController {
     constructor() {
         console.log('Notes has loaded')
         this.drawNotesList()
+        this.drawNoteCount()
 
         AppState.on('nestingNotes', this.drawNotesList)
         AppState.on('activeNotes', this.drawActiveNotes)
@@ -73,7 +74,8 @@ export class NotesController {
 
 
     drawNoteCount() {
-
+        notesService.noteCount()
+        setHTML('note-count', AppState.nestingNotes.noteCount)
     }
 
 

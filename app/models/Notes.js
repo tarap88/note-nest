@@ -12,7 +12,6 @@ export class Notes {
         this.updatedAt = data.updatedAt == undefined ? new Date() : new Date(data.updatedAt)
     }
 
-    notecount = 0
 
     get ListTemplate() {
         return `<li onclick="app.NotesController.setActiveNotes('${this.id}')">
@@ -27,11 +26,11 @@ export class Notes {
 				<p class="my-4"><u>Updated at:</u> ${this.LastUpdated}</p>
                 <div>
                 <label for="body"></label>
-                <textarea class="text-area-box w-100" onblur="app.NotesController.updateReport()" name="body" id="body">${this.body}</textarea>
+                <textarea class="text-area-box w-100" onblur="app.NotesController.updateNotes()" name="body" id="body">${this.body}</textarea>
                 </div>
                 <div class="text-end">
                   <button onclick="app.NotesController.destroyNotes()" type="button">
-                    Delete ${this.title} Report
+                    Delete ${this.title} Note
                   </button>
                 </div>
          </div>
@@ -39,8 +38,7 @@ export class Notes {
     }
 
     static get noteCount() {
-        this.notecount = AppState.nestingNotes.length
-        return `${this.notecount}`
+        return `${AppState.noteCount}`
     }
 
     get CreatedDate() {
