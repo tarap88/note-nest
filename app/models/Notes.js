@@ -20,7 +20,7 @@ export class Notes {
     }
 
     get ActiveNotesTemplate() {
-        return `<div class="col-md-4 col-12 text-light"> 
+        return `<div class="col-12 text-light"> 
         <h1 class="mt-3">${this.title}</h1>
         <p class="my-4"><u>Created at:</u> ${this.CreatedDate}</p>
 				<p class="my-4"><u>Updated at:</u> ${this.LastUpdated}</p>

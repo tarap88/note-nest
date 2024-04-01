@@ -10,12 +10,14 @@ export class NotesController {
     constructor() {
         console.log('Notes has loaded')
         this.drawNotesList()
-        this.drawNoteCount()
 
         AppState.on('nestingNotes', this.drawNotesList)
         AppState.on('activeNotes', this.drawActiveNotes)
+        AppState.on('activeNotes', this.drawNoteCount)
+        AppState.on('nestingNotes', this.drawNoteCount)
 
         notesService.loadNotes()
+        this.drawNoteCount()
     }
 
 
@@ -43,7 +45,6 @@ export class NotesController {
 
         event.preventDefault()
         console.log('Creating note report');
-        debugger
         const form = event.target
         const notesFormData = getFormData(form)
         console.log('here is your data', notesFormData);
@@ -74,8 +75,8 @@ export class NotesController {
 
 
     drawNoteCount() {
-        notesService.noteCount()
-        setHTML('note-count', AppState.nestingNotes.noteCount)
+        notesService.countNotes()
+        setHTML('note-count', Notes.noteCount)
     }
 
 
