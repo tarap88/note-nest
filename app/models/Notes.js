@@ -30,7 +30,7 @@ export class Notes {
                 <textarea class="text-area-box w-100" onblur="app.NotesController.updateReport()" name="body" id="body">${this.body}</textarea>
                 </div>
                 <div class="text-end">
-                  <button onclick="app.NotesController.destroyReport()" type="button">
+                  <button onclick="app.NotesController.destroyNotes()" type="button">
                     Delete ${this.title} Report
                   </button>
                 </div>

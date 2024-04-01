@@ -41,7 +41,7 @@ class NotesService {
 
     }
 
-    destroyReport() {
+    destroyNotes() {
         const notesId = AppState.activeNotes.id
         console.log('report id', notesId);
 

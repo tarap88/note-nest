@@ -77,7 +77,6 @@ export class NotesController {
     }
 
 
-
     destroyNotes() {
         const wantsToDestroy = window.confirm("Are you sure you want to delete this note?")
 
@@ -89,7 +88,7 @@ export class NotesController {
 
         console.log('destroying this report!!!!!');
 
-        notesService.destroyReport()
+        notesService.destroyNotes();
 
 
     }
